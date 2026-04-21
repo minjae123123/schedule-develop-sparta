@@ -20,7 +20,8 @@ public class UserService {
     public CreateUserResponse create(CreateUserRequest request) {
         User user = new User(
                 request.getName(),
-                request.getEmail()
+                request.getEmail(),
+                request.getPassword()
         );
 
         User savedUser = userRepository.save(user);
