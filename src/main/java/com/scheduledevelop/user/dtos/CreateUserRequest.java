@@ -1,4 +1,4 @@
-package com.scheduledevelop.dtos;
+package com.scheduledevelop.user.dtos;
 
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

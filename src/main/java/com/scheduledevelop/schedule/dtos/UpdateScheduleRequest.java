@@ -1,4 +1,4 @@
-package com.scheduledevelop.dtos;
+package com.scheduledevelop.schedule.dtos;
 
 import lombok.Getter;
 

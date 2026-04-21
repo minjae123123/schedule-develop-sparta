@@ -1,8 +1,8 @@
-package com.scheduledevelop.service;
+package com.scheduledevelop.schedule.service;
 
-import com.scheduledevelop.dtos.*;
-import com.scheduledevelop.entity.Schedule;
-import com.scheduledevelop.repository.ScheduleRepository;
+import com.scheduledevelop.schedule.dtos.*;
+import com.scheduledevelop.schedule.entity.Schedule;
+import com.scheduledevelop.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

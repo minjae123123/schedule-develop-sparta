@@ -1,7 +1,7 @@
-package com.scheduledevelop.controller;
+package com.scheduledevelop.user.controller;
 
-import com.scheduledevelop.dtos.*;
-import com.scheduledevelop.service.UserService;
+import com.scheduledevelop.user.service.UserService;
+import com.scheduledevelop.user.dtos.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

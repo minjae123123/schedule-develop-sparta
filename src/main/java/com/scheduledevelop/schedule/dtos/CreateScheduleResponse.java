@@ -1,12 +1,11 @@
-package com.scheduledevelop.dtos;
+package com.scheduledevelop.schedule.dtos;
 
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
-public class GetScheduleResponse {
+public class CreateScheduleResponse {
 
     private final Long id;
     private final String title;
@@ -15,8 +14,7 @@ public class GetScheduleResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    //전체 조회 용
-    public GetScheduleResponse(Long id, String title, String detail, String name, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CreateScheduleResponse(Long id, String title, String detail, String name, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.title = title;
         this.detail = detail;

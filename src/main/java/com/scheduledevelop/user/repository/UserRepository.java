@@ -1,6 +1,6 @@
-package com.scheduledevelop.repository;
+package com.scheduledevelop.user.repository;
 
-import com.scheduledevelop.entity.User;
+import com.scheduledevelop.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User,Long> {

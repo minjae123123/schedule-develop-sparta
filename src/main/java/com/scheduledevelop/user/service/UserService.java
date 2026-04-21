@@ -1,8 +1,8 @@
-package com.scheduledevelop.service;
+package com.scheduledevelop.user.service;
 
-import com.scheduledevelop.dtos.*;
-import com.scheduledevelop.entity.User;
-import com.scheduledevelop.repository.UserRepository;
+import com.scheduledevelop.user.dtos.*;
+import com.scheduledevelop.user.entity.User;
+import com.scheduledevelop.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
