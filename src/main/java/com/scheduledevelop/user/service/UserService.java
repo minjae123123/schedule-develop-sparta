@@ -1,5 +1,6 @@
 package com.scheduledevelop.user.service;
 
+import com.scheduledevelop.schedule.config.PasswordEncoder;
 import com.scheduledevelop.user.dtos.*;
 import com.scheduledevelop.user.entity.User;
 import com.scheduledevelop.user.repository.UserRepository;
@@ -15,16 +16,19 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public CreateUserResponse create(CreateUserRequest request) {
+        String encodedPassword = passwordEncoder.encode(request.getPassword());
         User user = new User(
                 request.getName(),
                 request.getEmail(),
-                request.getPassword()
+                encodedPassword
         );
 
         User savedUser = userRepository.save(user);
+
 
         return new CreateUserResponse(
                 savedUser.getId(),
@@ -105,7 +109,7 @@ public class UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("이메일이 존재하지 않습니다."));
 
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("비밀번호가 일치하지 않습니다.");
         }
 
