@@ -3,6 +3,7 @@ package com.scheduledevelop.schedule.controller;
 import com.scheduledevelop.schedule.service.ScheduleService;
 import com.scheduledevelop.schedule.dtos.*;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping("/schedules")
-    public ResponseEntity<CreateScheduleResponse> createSchedule(@RequestBody CreateScheduleRequest request, HttpSession session) {
+    public ResponseEntity<CreateScheduleResponse> createSchedule(@Valid  @RequestBody CreateScheduleRequest request, HttpSession session) {
         return ResponseEntity.status(HttpStatus.CREATED).body(scheduleService.create(request, session));
     }
 
