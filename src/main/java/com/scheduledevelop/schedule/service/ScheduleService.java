@@ -3,6 +3,9 @@ package com.scheduledevelop.schedule.service;
 import com.scheduledevelop.schedule.dtos.*;
 import com.scheduledevelop.schedule.entity.Schedule;
 import com.scheduledevelop.schedule.repository.ScheduleRepository;
+import com.scheduledevelop.user.entity.User;
+import com.scheduledevelop.user.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -16,26 +19,33 @@ import java.util.List;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public CreateScheduleResponse create(CreateScheduleRequest request) {
+    public CreateScheduleResponse create(CreateScheduleRequest request, HttpSession session)  {
+        Long userId = (Long) session.getAttribute("LOGIN_USER");
+
+        if (userId == null) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("유저 없음"));
+
         Schedule schedule = new Schedule(
                 request.getTitle(),
                 request.getDetail(),
-                request.getName(),
-                request.getPassword()
+                user
         );
 
         Schedule savedSchedule = scheduleRepository.save(schedule);
-
         return new CreateScheduleResponse(
                 savedSchedule.getId(),
-                savedSchedule.getTitle(),
+                savedSchedule.getName(),
                 savedSchedule.getDetail(),
                 savedSchedule.getName(),
                 savedSchedule.getCreatedAt(),
-                savedSchedule.getModifiedAt()
-        );
+                savedSchedule.getModifiedAt());
     }
 
     @Transactional(readOnly = true)

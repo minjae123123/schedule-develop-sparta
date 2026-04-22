@@ -1,5 +1,6 @@
 package com.scheduledevelop.schedule.entity;
 
+import com.scheduledevelop.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,12 +21,16 @@ public class Schedule extends BaseEntity {
     private String name;
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Schedule(String title, String detail, String name, String password) {
+
+
+    public Schedule(String title, String detail, User user) {
         this.title = title;
         this.detail = detail;
-        this.name = name;
-        this.password = password;
+        this.user = user;
 
     }
 

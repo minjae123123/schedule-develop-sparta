@@ -1,7 +1,9 @@
 package com.scheduledevelop.user.controller;
 
+import com.scheduledevelop.user.entity.User;
 import com.scheduledevelop.user.service.UserService;
 import com.scheduledevelop.user.dtos.*;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,5 +42,14 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/users/login")
+    public LoginResponse login(@RequestBody LoginRequest request, HttpSession session) {
+
+        User user = userService.login(request.getEmail(), request.getPassword());
+        session.setAttribute("LOGIN_USER", user.getId());
+
+        return new LoginResponse(user.getId(), "로그인 성공");
     }
 }

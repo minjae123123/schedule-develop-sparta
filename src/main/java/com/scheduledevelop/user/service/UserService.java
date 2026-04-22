@@ -99,4 +99,16 @@ public class UserService {
 
         userRepository.deleteById(id);
     }
+
+    public User login(String email, String password) {
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("이메일이 존재하지 않습니다."));
+
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+        }
+
+        return user;
+    }
 }
