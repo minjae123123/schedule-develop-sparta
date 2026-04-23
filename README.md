@@ -24,5 +24,6 @@
 # API 명세
 [https://www.notion.so/API-341cd1f1b02f80058ddbff44dba06ba4?showMoveTo=true&saveParent=true](https://www.notion.so/API-34bcd1f1b02f809e868deeedc3a3bff3)
 
-application.properties
-image
+# application.properties
+<img width="1337" height="791" alt="image" src="https://github.com/user-attachments/assets/de258ca5-113e-4071-8692-0793f6cc55e4" />
+
